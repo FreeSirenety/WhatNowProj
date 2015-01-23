@@ -73,3 +73,31 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+DerivedDataCache
+Intermediate
+Saved
+*.suo
+*.sdf
+*.sln
+*.sln
+*.exe
+*.dll
+*.pdb
+*.opensdf
+*.dll-*
+*.lib
+*.exp
+*.log
+*.orig
+Binaries/Linux/UCP
+Binaries/Linux/UCPServer
+*.dylib
+*.so
+*.a
+*.o
+Binaries/Win64/UCPServer.exe - Shortcut.lnk
+Binaries/Win64/steam_appid.txt
+*.pro
+*.pri
+UCP.uproject
