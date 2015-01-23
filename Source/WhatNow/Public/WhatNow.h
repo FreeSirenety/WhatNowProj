@@ -3,6 +3,9 @@
 #ifndef __WHATNOW_H__
 #define __WHATNOW_H__
 
-#include "EngineMinimal.h"
+#include "Engine.h"
+
+#define COLLISION_PROJECTILE    ECC_GameTraceChannel1
+#define COLLISION_PLAYER    ECC_GameTraceChannel2
 				   
 #endif

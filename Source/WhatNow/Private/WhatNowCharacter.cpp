@@ -1,6 +1,7 @@
 // Copyright 1998-2014 Epic Games, Inc. All Rights Reserved.
 
 #include "WhatNow.h"
+#include "Projectile.h"
 #include "WhatNowCharacter.h"
 
 AWhatNowCharacter::AWhatNowCharacter(const FObjectInitializer& ObjectInitializer)
@@ -32,7 +33,7 @@ AWhatNowCharacter::AWhatNowCharacter(const FObjectInitializer& ObjectInitializer
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->GravityScale = 2.f;
 	GetCharacterMovement()->AirControl = 0.80f;
-	GetCharacterMovement()->JumpZVelocity = 1000.f;
+	GetCharacterMovement()->JumpZVelocity = 1500.f;
 	GetCharacterMovement()->GroundFriction = 3.f;
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
@@ -55,6 +56,11 @@ void AWhatNowCharacter::SetupPlayerInputComponent(class UInputComponent* InputCo
 	InputComponent->BindTouch(IE_Released, this, &AWhatNowCharacter::TouchStopped);
 }
 
+void AWhatNowCharacter::Tick(float deltatime)
+{
+	SetActorLocation(FVector(1211.f, GetActorLocation().Y, GetActorLocation().Z));
+}
+
 void AWhatNowCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
@@ -63,8 +69,9 @@ void AWhatNowCharacter::MoveRight(float Value)
 
 void AWhatNowCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
+	
 	// jump on any touch
-	Jump();
+	//Jump();
 }
 
 void AWhatNowCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -72,3 +79,29 @@ void AWhatNowCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const 
 	StopJumping();
 }
 
+void AWhatNowCharacter::FireCarriedWeapon()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, TEXT("FIRE"));
+
+	// try and fire a projectile
+	if (ProjectileClass != NULL)
+	{
+		const FRotator SpawnRotation = GetActorRotation();
+		// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
+		const FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.f;
+
+		UWorld* const World = GetWorld();
+		if (World != NULL)
+		{
+			// spawn the projectile at the muzzle
+			World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+		}
+	}
+}
+
+void AWhatNowCharacter::TriggerJump()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, TEXT("JUMP"));
+
+	Jump();
+}

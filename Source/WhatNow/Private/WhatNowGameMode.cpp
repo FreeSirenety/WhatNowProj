@@ -13,4 +13,6 @@ AWhatNowGameMode::AWhatNowGameMode(const FObjectInitializer& ObjectInitializer)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	
 }
