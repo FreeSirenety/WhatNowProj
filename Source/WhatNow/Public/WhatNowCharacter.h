@@ -3,7 +3,7 @@
 #include "GameFramework/Character.h"
 #include "WhatNowCharacter.generated.h"
 
-UCLASS(config=Game)
+UCLASS(config = Game, Meta = (ChildCanTick))
 class AWhatNowCharacter : public ACharacter
 {
 	GENERATED_BODY()
@@ -30,8 +30,6 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
-
-	virtual void Tick(float deltatime) override;
 	
 
 public:
@@ -51,4 +49,7 @@ public:
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 		TSubclassOf<class AProjectile> ProjectileClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TOUCHINPUT")
+		bool IsTouching;
 };
