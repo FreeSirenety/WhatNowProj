@@ -56,11 +56,6 @@ void AWhatNowCharacter::SetupPlayerInputComponent(class UInputComponent* InputCo
 	InputComponent->BindTouch(IE_Released, this, &AWhatNowCharacter::TouchStopped);
 }
 
-void AWhatNowCharacter::Tick(float deltatime)
-{
-	SetActorLocation(FVector(1211.f, GetActorLocation().Y, GetActorLocation().Z));
-}
-
 void AWhatNowCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
@@ -69,20 +64,20 @@ void AWhatNowCharacter::MoveRight(float Value)
 
 void AWhatNowCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	
+	//IsTouching = true;
 	// jump on any touch
 	//Jump();
 }
 
 void AWhatNowCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
+	//IsTouching = false;
+
 	StopJumping();
 }
 
 void AWhatNowCharacter::FireCarriedWeapon()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, TEXT("FIRE"));
-
 	// try and fire a projectile
 	if (ProjectileClass != NULL)
 	{
@@ -101,7 +96,5 @@ void AWhatNowCharacter::FireCarriedWeapon()
 
 void AWhatNowCharacter::TriggerJump()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, TEXT("JUMP"));
-
 	Jump();
 }
