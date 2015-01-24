@@ -2,17 +2,24 @@
 
 #pragma once
 
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
+#include "Engine/TargetPoint.h"
 #include "Enemy.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class WHATNOW_API AEnemy : public APawn
+UCLASS(Meta = (ChildCanTick))
+class WHATNOW_API AEnemy : public ACharacter
 {
 	GENERATED_BODY()
 	
 public:
 	AEnemy(const class FObjectInitializer& ObjInit);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	ATargetPoint* FirstTarget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	ATargetPoint* SecondTarget;
 };

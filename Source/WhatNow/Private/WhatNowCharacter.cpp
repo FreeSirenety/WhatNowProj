@@ -19,7 +19,7 @@ AWhatNowCharacter::AWhatNowCharacter(const FObjectInitializer& ObjectInitializer
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
 	CameraBoom->AttachTo(RootComponent);
 	CameraBoom->bAbsoluteRotation = true; // Rotation of the character should not affect rotation of boom
-	CameraBoom->TargetArmLength = 500.f;
+	CameraBoom->TargetArmLength = 1000.f;
 	CameraBoom->SocketOffset = FVector(0.f,0.f,75.f);
 	CameraBoom->RelativeRotation = FRotator(0.f,180.f,0.f);
 
@@ -31,7 +31,7 @@ AWhatNowCharacter::AWhatNowCharacter(const FObjectInitializer& ObjectInitializer
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Face in the direction we are moving..
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 720.0f, 0.0f); // ...at this rotation rate
-	GetCharacterMovement()->GravityScale = 2.f;
+	GetCharacterMovement()->GravityScale = 3.f;
 	GetCharacterMovement()->AirControl = 0.80f;
 	GetCharacterMovement()->JumpZVelocity = 1500.f;
 	GetCharacterMovement()->GroundFriction = 3.f;

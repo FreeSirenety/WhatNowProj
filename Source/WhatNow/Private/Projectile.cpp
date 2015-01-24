@@ -8,6 +8,8 @@
 AProjectile::AProjectile(const FObjectInitializer& ObjectInitializer) 
 	: Super(ObjectInitializer)
 {
+	PrimaryActorTick.bStartWithTickEnabled = true;
+
 	// Use a sphere as a simple collision representation
 	CollisionComp = ObjectInitializer.CreateDefaultSubobject<USphereComponent>(this, TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(5.0f);
